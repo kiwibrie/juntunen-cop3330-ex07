@@ -1,0 +1,82 @@
+package base;
+
+/*
+ *  UCF COP3330 Summer 2021 Assignment 7 Solution
+ *  Copyright 2021 Brianne Juntunen
+ *
+ * Exercise 7 - Area of a Rectangular Room
+ * When working in a global environment, you’ll have
+ * to present information in both metric and Imperial
+ * units. And you’ll need to know when to do the
+ * conversion to ensure the most accurate results.
+
+ * Create a program that calculates the area of a room.
+ * Prompt the user for the length and width of the room
+ * in feet. Then display the area in both square feet
+ * and square meters.
+ *
+ * The formula for this conversion is m2 = f2 × 0.09290304
+
+Constraints
+Keep the calculations separate from the output.
+Use a constant to hold the conversion factor.
+
+* Challenges
+ * Revise the program to ensure that inputs are entered as numeric values.
+ * Don’t allow the user to proceed if the value entered is not numeric.
+ *
+ * Create a new version of the program that allows you to choose feet
+ * or meters for your inputs.
+ *
+ * Implement this program as a GUI program that automatically updates the
+ * values when any value changes.
+ */
+
+import java.util.Scanner;
+
+public class App {
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args){
+        App myApp = new App();
+
+        // conversion is m2 = f2 × 0.09290304
+        final double conv = 0.09290304;
+
+        double length = myApp.getInput("length");
+        double width = myApp.getInput("width");
+
+        myApp.printConfirmation(length, width);
+
+        double areaF = myApp.findAreaFeet(length, width);
+        double areaM = myApp.findAreaMeters(areaF, conv);
+
+        myApp.printConversions(areaF, areaM);
+    }
+
+    public void printConfirmation(double l, double w){
+        System.out.println(String.format("You entered dimensions of " +
+                "%f feet by %f feet.", l, w));
+    }
+
+    public void printConversions(double areaF, double areaM){
+        System.out.println("The area is");
+        System.out.println(areaF + " square feet");
+        System.out.println(areaF + " square meters");
+    }
+
+    public double findAreaFeet(double l, double w){
+        double area = l * w;
+        return area;
+    }
+
+    public double findAreaMeters(double f2, double conv){
+        double area = f2 * conv;
+        return area;
+    }
+
+    public double getInput(String type){
+        System.out.print("What is the "+type+" of the room in feet? ");
+        return in.nextDouble();
+    }
+}
