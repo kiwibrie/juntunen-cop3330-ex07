@@ -55,24 +55,21 @@ public class App {
     }
 
     public void printConfirmation(double l, double w){
-        System.out.println(String.format("You entered dimensions of " +
-                "%f feet by %f feet.", l, w));
+        System.out.printf("You entered the dimensions of %.0f feet by %.0f feet.\n", l, w);
     }
 
     public void printConversions(double areaF, double areaM){
-        System.out.println("The area is");
-        System.out.println(areaF + " square feet");
-        System.out.println(areaF + " square meters");
+        System.out.print("The area is\n");
+        System.out.printf("%.0f square feet\n", areaF);
+        System.out.printf("%.3f square meters", areaM);
     }
 
     public double findAreaFeet(double l, double w){
-        double area = l * w;
-        return area;
+        return l * w;
     }
 
     public double findAreaMeters(double f2, double conv){
-        double area = f2 * conv;
-        return area;
+        return f2 * conv;
     }
 
     public double getInput(String type){
